@@ -1,0 +1,13 @@
+@import '../../../styles/colors.scss';
+@import '../../../styles/_layout.scss';
+
+.quote {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: $darkGrey;
+}
+.quote-group {
+    display: flex;
+    flex-direction: column;
+    margin: 1.5rem 0;
+}

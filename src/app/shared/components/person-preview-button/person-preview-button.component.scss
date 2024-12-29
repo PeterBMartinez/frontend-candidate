@@ -1,0 +1,17 @@
+@import '../../../styles/colors.scss';
+
+.person-container {
+    height:100%;
+    width: 100%;
+    border: 2px solid $primary;
+    border-radius: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+a {
+    text-decoration: none;
+    font-weight: bold;
+    color: $primary;
+}

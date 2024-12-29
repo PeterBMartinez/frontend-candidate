@@ -1,0 +1,34 @@
+<form class="form" (ngSubmit)="search()">
+    <div class="form-group">
+        <input
+          type="text" 
+          class="form-control" 
+          placeholder="Search..." 
+          [ngModel]="searchService.term$ | async" 
+          (ngModelChange)="onTermChange($event)" 
+          name="searchTerm" 
+          required />
+      </div>
+    <div class="form-group">
+        <select class="form-control" [ngModel]="searchService.color$ | async" (ngModelChange)="onColorChange($event)" name="searchType">
+        <option *ngFor="let color of colorOptions" [value]="color.value">{{color.label}}</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+<app-error-alert [errorMessage]="errorMessage"></app-error-alert>
+
+<div *ngIf="searchService.matches$ | async as searchResults">
+    <div *ngIf="loading">
+        Loading...
+    </div>
+    <div class="search-results-count" *ngIf="searchResults.length === 0">
+        No results found.
+    </div>
+    <div class="search-results-count" *ngIf="!loading && searchResults.length > 0">
+        Found {{searchResults.length}} results.
+    </div>
+    <div class="search-results-container" >
+        <app-person-preview-button *ngFor="let result of searchResults" [person]="result"></app-person-preview-button>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+<div *ngIf="userService.selectedUser$ | async as user">
+    <div class="back-button-container">
+        <a [routerLink]="['/']">Back to search results</a>
+    </div>
+    <div *ngIf="loading" class="loading-container">
+        Loading...
+    </div>
+    <div *ngIf="!loading" class="details-container">
+        <div class="name-container">{{user.name}}</div>
+        <div class="favorite-color-container">Favorite Color: {{user.favorite_color | titlecase}}</div>
+        <div class="quotes-container">
+            <div *ngFor="let quote of user.quotes">
+                <app-quote [quote]="quote"></app-quote>
+            </div>
+        </div>
+    </div>
+</div>
+<app-error-alert [errorMessage]="errorMessage"></app-error-alert>

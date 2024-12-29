@@ -1,5 +1,5 @@
 'use strict';
-
+const PORT = 5555;
 const data = {
   // id => (name, favorite_color, quotes={"likes": {"quotes": ["q1", ...]}})
   1: ["Mergatroid Q. Finkelmeyer", "red",
@@ -62,6 +62,14 @@ const data = {
                   "Listen more, speak less."],
        }
       ],
+    35: ["Jenny Tull", "blue",
+         {
+           "35": ["ABC, easy as 123.",
+                  "The second mouse gets the cheese."],
+           "35": ["ZZZZ", "XYZ, it's just you and me."],
+           "1": ["The second mouse gets the cheese."],
+         }
+        ],
 }
 
 // Configure the secure express server
@@ -74,6 +82,8 @@ app.use(function (req, res, next) {
 
   // Request methods you wish to allow
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
   // Pass to next layer of middleware
   next();
@@ -143,6 +153,6 @@ app.use((err, req, res, next) => {
   res.status(500).send('Server error occurred');
 });
 
-app.listen(5000, () => {
-  console.log('Backend started at: http://localhost:5000');
+app.listen(PORT, () => {
+  console.log(`Backend started at: http://localhost:${PORT}`);
 });
