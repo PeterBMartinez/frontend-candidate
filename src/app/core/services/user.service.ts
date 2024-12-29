@@ -58,7 +58,6 @@ export class UserService extends BaseHttpService {
   }
 
   public setSelectedUser(user: User): void {
-    console.log(user.quotes);
     this.selectedUserBS.next(user);
   }
 
